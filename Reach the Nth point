@@ -1,0 +1,31 @@
+class Solution:
+	def nthPoint(self,n):
+		# Code here
+		if n == 1:
+            return 1
+        elif n == 2:
+            return 2
+        a = 1
+        b = 2
+        for i in range(2,n+1):
+            temp = (a + b) % 1000000007
+            a = b
+            b = temp
+        return a
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+import sys
+sys.setrecursionlimit(10**6)
+
+if __name__ == '__main__':
+	T=int(input())
+	for i in range(T):
+		n = int(input())
+		ob = Solution();
+		ans = ob.nthPoint(n)
+		print(ans)
+# } Driver Code Ends
