@@ -1,0 +1,33 @@
+class Solution:
+	
+	def findMaxSum(self,arr, n):
+		# code here
+		if n==1:
+            return arr[0]
+        a=arr[0]
+        b=max(arr[0],arr[1])
+        for i in range(2,n):
+            c=max(b,a+arr[i])
+            a=b
+            b=c
+        return b
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+
+
+
+if __name__ == '__main__':
+    tc = int(input())
+    while tc > 0:
+        n = int(input())
+        arr = list(map(int, input().strip().split()))
+        ob = Solution()
+        ans = ob.findMaxSum(arr, n)
+        print(ans)
+        tc -= 1
+
+# } Driver Code Ends
