@@ -1,0 +1,49 @@
+class Solution():
+    def maxSumWithK(self, a, n, k):
+        # Code here
+        sum=0
+        for i in range(k):
+            sum+=a[i]
+            
+            last =0
+            j=0
+            ans=float('-inf')
+        ans=max(ans,sum)
+        for i in range(k,n):
+            sum+=a[i]
+            last+=a[j]
+            
+            j+=1
+            ans=max(ans,sum)
+            if (last < 0):
+                sum-=last
+                ans=max(ans,sum)
+                last=0
+                
+        return ans
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+def main():
+
+    T = int(input())
+
+    while(T > 0):
+        n = int(input())
+        a = [int(x) for x in input().strip().split()]
+        k = int(input())
+        
+        ob = Solution()
+        print(ob.maxSumWithK(a, n, k))
+
+        T -= 1
+
+
+if __name__ == "__main__":
+    main()
+
+
+# } Driver Code Ends
