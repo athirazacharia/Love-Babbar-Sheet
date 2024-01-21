@@ -1,0 +1,84 @@
+from typing import List
+from collections import deque
+
+
+class Solution:
+    def numberOfPairs(self, a : List[int], pairs : List[List[int]]) -> int:
+        # code here
+        visit = [0]*a[0]
+        
+        adj=[[] for _ in range(a[0])]
+        
+        for i in pairs:
+            adj[i[0]].append(i[1])
+            adj[i[1]].append(i[0])
+        
+        def fun(u,c):
+            visit[u]=1
+            
+            q=deque()
+            q.append(u)
+            while q:
+                t=q.popleft()
+                c+=1
+                for i in adj[t]:
+                    if visit[i]==0:
+                        visit[i]=1
+                        q.append(i)
+            return c
+        ans = 0
+        for i in range(a[0]):
+            if visit[i]==0:
+                c=fun(i,0)
+                ans += c*(a[0]-c)
+        return ans//2
+
+
+
+#{ 
+ # Driver Code Starts
+class IntArray:
+    def __init__(self) -> None:
+        pass
+    def Input(self,n):
+        arr=[int(i) for i in input().strip().split()]#array input
+        return arr
+    def Print(self,arr):
+        for i in arr:
+            print(i,end=" ")
+        print()
+
+
+
+class IntMatrix:
+    def __init__(self) -> None:
+        pass
+    def Input(self,n,m):
+        matrix=[]
+        #matrix input
+        for _ in range(n):
+            matrix.append([int(i) for i in input().strip().split()])
+        return matrix
+    def Print(self,arr):
+        for i in arr:
+            for j in i:
+                print(j,end=" ")
+            print()
+
+
+if __name__=="__main__":
+    t = int(input())
+    for _ in range(t):
+        
+        a=IntArray().Input(2)
+        
+        
+        pairs=IntMatrix().Input(a[1], a[1])
+        
+        obj = Solution()
+        res = obj.numberOfPairs(a, pairs)
+        
+        print(res)
+        
+
+# } Driver Code Ends
